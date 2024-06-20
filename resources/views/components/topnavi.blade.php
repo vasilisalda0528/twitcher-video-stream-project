@@ -6,7 +6,7 @@
             </a>
             <a href="{{ route('home') }}"
                 class="text-xl lg:text-2xl font-black text-indigo-900 hover:text-indigo-700 uppercase hidden sm:block">
-                {{ opt('site_title')  }}
+                {{ opt('site_title') }}
             </a>
         </div>
         <div class="flex space-x-5 items-center">
@@ -18,8 +18,11 @@
                 <a class="font-bold text-indigo-800 hover:text-indigo-600 text-2xl lg:text-xl" href="{{ route('feed') }}">
                     <i class="fa-solid fa-house-signal"></i>
                 </a>
-                <a class="relative inline-flex font-bold text-indigo-800 hover:text-indigo-600 text-2xl lg:text-xl" href="{{ route('notifications.index') }}">
-                    <span class="absolute -top-2 -right-2 py-0.5 px-1 rounded-full bg-rose-600 flex justify-center items-center items"><span class="text-xs text-white">{{ auth()->user()->unreadNotifications()->count() }}</span></span>
+                <a class="relative inline-flex font-bold text-indigo-800 hover:text-indigo-600 text-2xl lg:text-xl"
+                    href="{{ route('notifications.index') }}">
+                    <span
+                        class="absolute -top-2 -right-2 py-0.5 px-1 rounded-full bg-rose-600 flex justify-center items-center items"><span
+                            class="text-xs text-white">{{ auth()->user()->unreadNotifications()->count() }}</span></span>
                     <i class="fa-solid fa-bell"></i>
                 </a>
                 <a class="font-bold text-indigo-800 hover:text-indigo-600 text-2xl lg:text-xl"

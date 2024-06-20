@@ -8,19 +8,22 @@
 
     <title inertia>{{ opt('seo_title') }}</title>
 
-    @if(request()->route() && request()->route()->getName() == 'home')
-    <meta name="description" content="{{ opt('seo_desc')  }}" />
-    <meta name="keywords" content="{{ opt('seo_keys')  }}" />
+    @if (request()->route() && request()->route()->getName() == 'home')
+        <meta name="description" content="{{ opt('seo_desc') }}" />
+        <meta name="keywords" content="{{ opt('seo_keys') }}" />
     @endif
 
-    @if(request()->route() && request()->route()->getName() == 'channel')
-    @php
-    $streamUser = \App\Models\User::whereUsername(request()->user)->firstOrFail();
-    @endphp
-    <meta property="og:title" content="{{ __(" :channelName channel (:handle)", ['channelName'=> $streamUser->name,
-    'handle' => '@' . $streamUser->username]) }}" />
-    <meta property="og:url" content="{{ route('channel', ['user' => $streamUser->username]) }}" />
-    <meta property="og:image" content="{{ $streamUser->cover_picture }}" />
+    @if (request()->route() && request()->route()->getName() == 'channel')
+        @php
+            $streamUser = \App\Models\User::whereUsername(request()->user)->firstOrFail();
+        @endphp
+        <meta property="og:title"
+            content="{{ __(' :channelName channel (:handle)', [
+                'channelName' => $streamUser->name,
+                'handle' => '@' . $streamUser->username,
+            ]) }}" />
+        <meta property="og:url" content="{{ route('channel', ['user' => $streamUser->username]) }}" />
+        <meta property="og:image" content="{{ $streamUser->cover_picture }}" />
     @endif
 
     <!-- Fonts -->

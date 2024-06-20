@@ -7,8 +7,9 @@ import { createInertiaApp } from "@inertiajs/inertia-react";
 import { InertiaProgress } from "@inertiajs/progress";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 
+
 const appName =
-    window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
+    window.document.getElementsByTagName("title")[0]?.innerText || "CRUST - Gaming and Life Streams - Get into it!";
 
 if (document.getElementById("modal-root")) {
     createInertiaApp({
