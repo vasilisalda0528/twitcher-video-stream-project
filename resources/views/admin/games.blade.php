@@ -44,6 +44,8 @@
             <div class="ml-3">
                 @if (!empty($selectedGame->thumbnail))
                     <img src="{{ url($selectedGame->thumbnail) }}" alt="Game Thumbnail" style="height: 200px">
+                @else
+                    <h4>No Thumbnail</h4>
                 @endif
             </div>
         </div>
@@ -59,6 +61,7 @@
                     <x-th>{{ __('ID') }}</x-th>
                     <x-th>{{ __('Game Title') }}</x-th>
                     <x-th>{{ __('Category') }}</x-th>
+                    <x-th>{{ __('Thumbnail') }}</x-th>
                     <x-th>{{ __('Actions') }}</x-th>
                 </tr>
             </thead>
@@ -77,6 +80,13 @@
                             <x-slot name="field">{{ __('Category') }}</x-slot>
                             {{ $c->category->category }}
                         </x-td>
+                        <td class="text-center" style="border: 1px solid #e5e7eb;">
+                            {{-- <x-slot name="field">{{ __('Thumbnail') }}</x-slot> --}}
+                            @if (!empty($c->thumbnail))
+                                <img src="{{ url($c->thumbnail) }}" alt="" style="height: 40px; margin: auto;">
+                            @endif
+                            {{-- {{ $c->thumbnail }} --}}
+                        </td>
                         {{-- <x-td>
                             <x-slot name="field">{{ __('Videos') }}</x-slot>
                             <span class="inline-flex px-2 py-1 bg-indigo-200 text-indigo-700 rounded-lg">
