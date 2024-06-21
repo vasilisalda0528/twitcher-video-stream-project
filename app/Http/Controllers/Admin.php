@@ -24,6 +24,7 @@ use App\Models\TokenPack;
 use App\Models\TokenSale;
 use App\Models\Video;
 use App\Models\VideoCategories;
+use App\Models\Game;
 use App\Models\Withdrawal;
 use App\Notifications\PaymentRequestProcessed;
 use App\Notifications\StreamerVerifiedNotification;
@@ -787,6 +788,82 @@ class Admin extends Controller
 
         return redirect('admin/video-categories')->with('msg', 'Category successfully updated.');
     }
+
+    // Game List
+    public function gameList(Request $r)
+    {
+        // if remove
+        if ($removeId = $r->remove) {
+            $d = Game::findOrFail($removeId);
+            $d->delete();
+
+         return redirect('admin/games')->with('msg', 'Successfully removed Game.');
+            
+        }
+
+
+        // if update
+        $selectedGame = [];
+        if ($updateGame = $r->update) {
+            // find category
+            $selectedGame = Game::findOrFail($updateGame);
+        }
+
+        $games = Game::with('category')->orderby('id')->paginate();
+        $categories = VideoCategories::all();
+
+        
+        return view('admin.games')
+            ->with('games', $games)
+            ->with('categories', $categories)
+            ->with('selectedGame', $selectedGame);
+    }
+
+     // Add Game
+     public function addGame(Request $r)
+     {
+         $this->validate($r, ['title' => 'required', 'category' => 'required']);
+ 
+         $c = new Game();
+         $c->title = $r->title;
+         $c->category_id = $r->category;
+
+        if ($r->hasFile('thumbnail')) {
+            # code...
+            $ext = $r->file('thumbnail')->getClientOriginalExtension();
+            $destinationPath = public_path() . '/images/thumbnails';
+            $fileName = uniqid(rand()). '.' . $ext;
+            $r->file('thumbnail')->move($destinationPath, $fileName);
+            $c->thumbnail = '/images/thumbnails/' . $fileName;
+        }
+
+         $c->save();
+ 
+         return redirect('admin/games')->with('msg', 'New Game successfully created.');
+     }
+ 
+     // Update Game
+     public function updateGame(Request $r)
+     {
+        $this->validate($r, ['title' => 'required', 'category' => 'required']);
+ 
+        $c = Game::findOrFail($r->id);
+        $c->title = $r->title;
+        $c->category_id = $r->category;
+        
+        if ($r->hasFile('thumbnail')) {
+            # code...
+            $ext = $r->file('thumbnail')->getClientOriginalExtension();
+            $destinationPath = public_path() . '/images/thumbnails';
+            $fileName = uniqid(rand()). '.' . $ext;
+            $r->file('thumbnail')->move($destinationPath, $fileName);
+            $c->thumbnail = '/images/thumbnails/' . $fileName;
+        }
+        $c->save();
+
+        return redirect('admin/games')->with('msg', 'Game successfully updated.');
+     
+     }
 
     // pages controller
     public function pages()

@@ -13,7 +13,7 @@ class Video extends Model
     use HasFactory;
 
     public $appends = ['videoUrl', 'slug', 'canBePlayed'];
-    public $with = ['category'];
+    public $with = ['category', 'game'];
 
     public function streamer()
     {
@@ -46,6 +46,11 @@ class Video extends Model
     public function category()
     {
         return $this->belongsTo(VideoCategories::class);
+    }
+
+    public function game()
+    {
+        return $this->belongsTo(Game::class);
     }
 
     public function getCanBePlayedAttribute()

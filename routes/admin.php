@@ -62,6 +62,11 @@ Route::get('admin/video-categories', [Admin::class, 'video_categories']);
 Route::post('admin/add_video_category', [Admin::class, 'add_video_category']);
 Route::post('admin/update_video_category', [Admin::class, 'update_video_category']);
 
+// Game
+Route::get('admin/games', [Admin::class, 'gameList']);
+Route::post('admin/add_game', [Admin::class, 'addGame']);
+Route::post('admin/update_game', [Admin::class, 'updateGame']);
+
 // CMS
 Route::get('admin/cms', [Admin::class, 'pages'])->name('admin-cms');
 Route::post('admin/cms', [Admin::class, 'create_page']);

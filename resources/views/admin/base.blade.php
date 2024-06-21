@@ -43,7 +43,7 @@
         <div class="fixed w-full flex items-center justify-between h-14 text-white z-10 bg-zinc-900">
             <div class="bg-zinc-900 flex items-center w-full">
                 <div>
-                    <a href="{{route('home') }}" target="_blank">
+                    <a href="{{ route('home') }}" target="_blank">
                         <img src="{{ asset(opt('site_logo')) }}" alt="logo" class="h-8 ml-2" />
                     </a>
                 </div>
@@ -55,7 +55,8 @@
                         <div class="block w-px h-6 mx-3 bg-zinc-900"></div>
                     </li>
                     <li>
-                        <a class="flex items-center mr-4 hover:text-blue-100" href="{{ route('logout') }}" as="button">
+                        <a class="flex items-center mr-4 hover:text-blue-100" href="{{ route('logout') }}"
+                            as="button">
                             <span class="inline-flex mr-1">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -83,9 +84,9 @@
                 </div>
 
                 @if (session('msg'))
-                <div class="my-5 bg-blue-200 text-blue-700 font-semibold border-2 border-blue-300 p-3 rounded ml-3">
-                    {{ session('msg') }}
-                </div>
+                    <div class="my-5 bg-blue-200 text-blue-700 font-semibold border-2 border-blue-300 p-3 rounded ml-3">
+                        {{ session('msg') }}
+                    </div>
                 @endif
 
 
@@ -110,9 +111,9 @@
     @include('sweetalert::alert')
 
     @if ($errors->any())
-    {{-- attention: this is required inline because it contains dynamic messages from session to output to the user --}}
-    <script type="text/javascript">
-        var errorList = '';
+        {{-- attention: this is required inline because it contains dynamic messages from session to output to the user --}}
+        <script type="text/javascript">
+            var errorList = '';
             @foreach ($errors->all() as $error)
                 errorList += '{{ $error }}. ';
             @endforeach
@@ -122,7 +123,7 @@
                 icon: 'error',
                 text: errorList
             });
-    </script>
+        </script>
     @endif
 
     @stack('adminExtraJS')

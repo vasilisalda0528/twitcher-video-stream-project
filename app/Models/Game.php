@@ -14,7 +14,12 @@ class Game extends Model
     public $with = ['category'];
 
     public function category() {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(VideoCategories::class);
+    }
+
+    public function videos()
+    {
+        return $this->hasMany(Video::class);
     }
 
     // slug attribute
