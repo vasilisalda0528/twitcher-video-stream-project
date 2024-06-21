@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Video;
 use App\Models\VideoCategories;
+use App\Models\Game;
 use App\Models\VideoSales;
 use App\Notifications\NewVideoSale;
 use Illuminate\Http\Request;
@@ -137,6 +138,11 @@ class VideosController extends Controller
         if ($request->filled('search')) {
             $videos->where('title', 'LIKE', '%' . $request->search . '%');
         }
+        
+        // if game
+        if ($request->filled('game')) {
+            $videos->where('game_id',  $request->game);
+        }
 
         // case categories
         if ($request->filled('selectedCategories')) {
@@ -154,12 +160,15 @@ class VideosController extends Controller
         // all video categories
         $categories = VideoCategories::orderBy('category')->get();
 
+        // all Game titles
+        $games = Game::all();
+
         // assing to simple category
         $category = $videocategory;
 
 
         // render the view
-        return Inertia::render('Videos/BrowseVideos', compact('videos', 'category', 'exploreImage', 'categories'));
+        return Inertia::render('Videos/BrowseVideos', compact('videos', 'category', 'exploreImage', 'categories', 'games'));
     }
 
     public function videosManager(Request $request)
