@@ -54,7 +54,8 @@
     <hr class="my-3" />
 
     @if ($games)
-        {{ $games->links() }}
+        {{ $games->onEachSide(1)->links() }}
+
         <table class="table border-collapse w-full bg-white text-stone-600 mt-2">
             <thead>
                 <tr>
