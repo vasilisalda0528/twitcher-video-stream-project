@@ -8,21 +8,21 @@ const homedir = require("os").homedir();
 console.log(homedir);
 
 export default defineConfig({
-    plugins: [
-        laravel({
-            input: "resources/js/app.jsx",
-            refresh: true,
-        }),
-        react(),
-    ],
-    server: {
-        https: {
-            key: homedir + "/.config/valet/Certificates/" + domain + ".key",
-            cert: homedir + "/.config/valet/Certificates/" + domain + ".crt",
-        },
-        host: domain,
-        hmr: {
-            host: domain,
-        },
-    },
+  plugins: [
+    laravel({
+      input: "resources/js/app.jsx",
+      refresh: true,
+    }),
+    react(),
+  ],
+  // server: {
+  //     https: {
+  //         key: homedir + "/.config/valet/Certificates/" + domain + ".key",
+  //         cert: homedir + "/.config/valet/Certificates/" + domain + ".crt",
+  //     },
+  //     host: domain,
+  //     hmr: {
+  //         host: domain,
+  //     },
+  // },
 });
