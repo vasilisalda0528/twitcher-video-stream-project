@@ -27,7 +27,7 @@ export default function GameBrowse({ exploreImage, games }) {
     >
       <div className="flex flex-wrap gap-3 justify-evenly -mt-16">
         {games.map((game) => (
-          <GameCard game={game} />
+          <GameCard key={game.id} game={game} />
         ))}
       </div>
     </Front>

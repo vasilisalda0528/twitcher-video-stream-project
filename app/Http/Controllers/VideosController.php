@@ -196,8 +196,9 @@ class VideosController extends Controller
                     'free_for_subs' => 'no'];
 
         $categories = VideoCategories::orderBy('category')->get();
+        $games = Game::all();
 
-        return Inertia::render('Videos/Partials/UploadVideo', compact('video', 'categories'));
+        return Inertia::render('Videos/Partials/UploadVideo', compact('video', 'categories', 'games'));
     }
 
     public function editVideo(Video $video)

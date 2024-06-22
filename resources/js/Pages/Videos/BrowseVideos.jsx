@@ -14,6 +14,8 @@ import TextInput from "@/Components/TextInput";
 import debounce from "lodash.debounce";
 import { IoMdFunnel } from "react-icons/io";
 
+import CustomSelect from "@/Components/CustomSelect";
+
 export default function BrowseVideos({
   videos,
   category,
@@ -155,41 +157,13 @@ export default function BrowseVideos({
               {__("Game Title")}
             </h3>
             <div className="bg-white dark:bg-zinc-800 rounded-b-lg shadow p-3">
-              <Select
-                // className="w-full"
-                name="game"
+              <CustomSelect
+                name={"game"}
                 options={games}
-                getOptionLabel={(item) => item.title}
-                getOptionValue={(item) => item.id}
+                labelField="title"
+                valueField="id"
                 onChange={(val) => {
                   setGame(val.id);
-                }}
-                theme={(theme) => ({
-                  ...theme,
-                  colors: {
-                    ...theme.colors,
-                    primary: "#e7eaff",
-                    primary25: "#4338ca",
-                  },
-                })}
-                styles={{
-                  control: (baseStyles, state) => ({
-                    ...baseStyles,
-                    borderColor: state.isFocused ? "#e7eaff" : "",
-                  }),
-                  option: (
-                    styles,
-                    { data, isDisabled, isFocused, isSelected }
-                  ) => ({
-                    ...styles,
-                    backgroundColor: isDisabled
-                      ? undefined
-                      : isSelected
-                      ? "#4338ca"
-                      : isFocused
-                      ? "#e7eaff"
-                      : undefined,
-                  }),
                 }}
               />
             </div>
