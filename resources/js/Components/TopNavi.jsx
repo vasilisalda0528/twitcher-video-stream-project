@@ -5,6 +5,7 @@ import {
   MdDarkMode,
   MdGeneratingTokens,
   MdOutlineVideoLibrary,
+  MdOutlineGamepad,
 } from "react-icons/md";
 import { BsFillSunFill, BsSlashSquare } from "react-icons/bs";
 import { BiUserCircle } from "react-icons/bi";
@@ -176,6 +177,15 @@ export default function TopNavi({ children }) {
               <MdOutlineVideoLibrary className="mr-1" />
             </span>
             <span>{__("Videos")}</span>
+          </Link>
+          <Link
+            href={route("games.browse")}
+            className="ml-5 hidden md:inline-flex items-center text-white text-lg hover:text-indigo-200 font-semibold"
+          >
+            <span>
+              <MdOutlineGamepad className="mr-1" />
+            </span>
+            <span>{__("Games")}</span>
           </Link>
           <Link
             href={route("token.packages")}

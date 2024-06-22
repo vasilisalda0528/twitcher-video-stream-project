@@ -26,6 +26,7 @@ use App\Http\Controllers\StreamerVerificationController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\TipsController;
 use App\Http\Controllers\VideosController;
+use App\Http\Controllers\GamesController;
 use App\Http\Middleware\BanMiddleware;
 use App\Http\Middleware\HandleInertiaRequests;
 
@@ -133,6 +134,8 @@ Route::post('/update-video/{video}', [VideosController::class, 'updateVideo'])->
 Route::post('/save', [VideosController::class, 'save'])->name('videos.save');
 Route::post('/delete', [VideosController::class, 'delete'])->name('videos.delete');
 
+// Games
+Route::get('/games', [GamesController::class, 'browse'])->name('games.browse');
 
 // Contact
 Route::get('/get-in-touch', [ContactController::class, 'form'])->name('contact.form');
